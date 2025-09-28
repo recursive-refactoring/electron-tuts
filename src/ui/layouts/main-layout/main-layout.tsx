@@ -1,5 +1,4 @@
 import { Box } from "@mui/material";
-import { Header } from "./header";
 
 export const MainLayout = (props: any) => {
   const { children } = props;
@@ -8,10 +7,11 @@ export const MainLayout = (props: any) => {
       sx={{
         display: "flex",
         flexDirection: "column",
+        minHeight: "100vh",
+        gap: 1,
       }}
     >
-      <Header />
-      {children}
+      <Box sx={{ flexGrow: 1 }}>{children}</Box>
     </Box>
   );
 };

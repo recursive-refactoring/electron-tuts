@@ -1,13 +1,11 @@
 import "./App.css";
 import { Main } from "./features";
-import { MainLayout, RootLayout } from "./layouts";
+import { RootLayout } from "./layouts";
 
 function App() {
   return (
     <RootLayout>
-      <MainLayout>
-        <Main />
-      </MainLayout>
+      <Main />
     </RootLayout>
   );
 }

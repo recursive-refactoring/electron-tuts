@@ -3,11 +3,20 @@
 import { CommonIcon } from "@/components/icons";
 import SearchIcon from "@mui/icons-material/Search";
 import CommonTextField from "../common-text-field";
+import { useState } from "react";
 
 export const SearchField = (props: any) => {
-  const { setSearch, search, placeholder = "Search", fullWidth = true } = props;
+  const {
+    setSearch,
+    placeholder = "Search",
+    fullWidth = true,
+    handleSearch,
+  } = props;
 
-  const handleSearch = (e: any) => {
+  const [searchValue, setSearchValue] = useState();
+
+  const onChange = (e: any) => {
+    setSearchValue(e?.target.value);
     setSearch?.(e?.target?.value);
   };
 
@@ -15,11 +24,13 @@ export const SearchField = (props: any) => {
     <CommonTextField
       fullWidth={fullWidth}
       label=""
-      onChange={handleSearch}
-      value={search}
+      onChange={onChange}
+      value={searchValue}
       endIcon={
         <CommonIcon
           Icon={SearchIcon}
+          hasAction
+          handleAction={() => handleSearch?.(searchValue)}
           customStyles={
             {
               // color: styles?.iconColor,
