@@ -2,9 +2,8 @@ import { Box, IconButton } from "@mui/material";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import ReplayIcon from "@mui/icons-material/Replay";
-import SearchIcon from "@mui/icons-material/Search";
 import LaunchIcon from "@mui/icons-material/Launch";
-import AddBoxIcon from "@mui/icons-material/AddBox";
+// import AddBoxIcon from "@mui/icons-material/AddBox";
 import { SearchField } from "@/components";
 import { useHeader } from "./use-header";
 
@@ -15,7 +14,7 @@ export const Header = (props: any) => {
     handleGoBack,
     handleGoForward,
     handleGoReload,
-    handleNewTab,
+    // handleNewTab,
   } = useHeader(props);
   return (
     <Box
@@ -47,15 +46,12 @@ export const Header = (props: any) => {
         <IconButton onClick={handleGoReload}>
           <ReplayIcon />
         </IconButton>
-        <IconButton>
-          <SearchIcon />
-        </IconButton>
         <IconButton onClick={handleNewWindow}>
           <LaunchIcon />
         </IconButton>
-        <IconButton onClick={handleNewTab}>
+        {/* <IconButton onClick={handleNewTab}>
           <AddBoxIcon />
-        </IconButton>
+        </IconButton> */}
       </Box>
       <Box>
         <SearchField handleSearch={searchUrl} />

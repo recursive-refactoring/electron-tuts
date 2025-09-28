@@ -1,5 +1,7 @@
+import { useEffect } from "react";
+
 export const useHeader = (props: any) => {
-  const { webViewRef } = props;
+  const { webViewRef, setTabs, tabs } = props;
 
   const searchUrl = (search: any) => {
     if (search.startsWith("http://") || search.startsWith("https://")) {
@@ -17,23 +19,39 @@ export const useHeader = (props: any) => {
 
   const handleGoBack = () => {
     if (webViewRef?.current === null) return;
-    else webViewRef?.current.goBack();
+    webViewRef?.current.goBack();
   };
 
   const handleGoForward = () => {
     if (webViewRef?.current === null) return;
-    else webViewRef?.current.goForward();
+    webViewRef?.current.goForward();
   };
 
   const handleGoReload = () => {
     if (webViewRef?.current === null) return;
-    else webViewRef?.current.reload();
+    webViewRef?.current.reload();
+  };
+
+  const switchToTab = (index: number) => {
+    const tab = tabs?.[index];
+    webViewRef.current.src = tab?.url;
   };
 
   const handleNewTab = () => {
     if (webViewRef?.current === null) return;
-    else webViewRef?.current.reload();
+    const newTab = {
+      title: `.`,
+      url: "https://www.google.com",
+    };
+    setTabs((prevTabs: any[]) => {
+      const updatedTabs = [...prevTabs, newTab];
+      return updatedTabs;
+    });
   };
+
+  useEffect(() => {
+    switchToTab(tabs?.length - 1);
+  }, [tabs]);
 
   return {
     searchUrl,

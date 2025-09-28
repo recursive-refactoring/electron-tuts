@@ -1,9 +1,10 @@
 import { useMain } from "./use-main";
 import { Box } from "@mui/material";
 import { Header } from "./header";
+import { SubHeader } from "./sub-header";
 
 export const Main = () => {
-  const { webViewRef } = useMain();
+  const { webViewRef, tabs, setTabs } = useMain();
   return (
     <Box
       sx={{
@@ -13,7 +14,8 @@ export const Main = () => {
         gap: 1,
       }}
     >
-      <Header webViewRef={webViewRef} />
+      <Header webViewRef={webViewRef} tabs={tabs} setTabs={setTabs} />
+      <SubHeader tabs={tabs} setTabs={setTabs} />
       <webview
         ref={webViewRef}
         id="webview"
