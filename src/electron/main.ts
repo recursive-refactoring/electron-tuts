@@ -1,6 +1,7 @@
-import { app, BrowserWindow } from "electron";
+import { app, BrowserWindow, ipcMain } from "electron";
 import path from "path";
 import { isDev } from "./utils/env.js";
+import { getPreloadPath } from "./utils/path-resolver.js";
 
 app.enableSandbox();
 
@@ -18,6 +19,7 @@ function createWindow() {
       webviewTag: true,
       contextIsolation: true,
       nodeIntegration: false,
+      preload: getPreloadPath(),
     },
   });
   win.setContentProtection(true);
@@ -39,3 +41,5 @@ app.on("window-all-closed", () => {
     app.quit();
   }
 });
+
+ipcMain.on("new-window", createWindow);

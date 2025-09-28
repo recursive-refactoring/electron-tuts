@@ -1,10 +1,9 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 
 export const useMain = () => {
-  const [url, setUrl] = useState("https://www.google.com");
+  const webViewRef = useRef(null);
 
   return {
-    url,
-    setUrl,
+    webViewRef,
   };
 };

@@ -9,8 +9,14 @@ import { SearchField } from "@/components";
 import { useHeader } from "./use-header";
 
 export const Header = (props: any) => {
-  const { url } = props;
-  const { searchUrl } = useHeader(props);
+  const {
+    searchUrl,
+    handleNewWindow,
+    handleGoBack,
+    handleGoForward,
+    handleGoReload,
+    handleNewTab,
+  } = useHeader(props);
   return (
     <Box
       sx={{
@@ -32,27 +38,27 @@ export const Header = (props: any) => {
           flexWrap: "wrap",
         }}
       >
-        <IconButton>
+        <IconButton onClick={handleGoBack}>
           <ArrowBackIcon />
         </IconButton>
-        <IconButton>
+        <IconButton onClick={handleGoForward}>
           <ArrowForwardIcon />
         </IconButton>
-        <IconButton>
+        <IconButton onClick={handleGoReload}>
           <ReplayIcon />
         </IconButton>
         <IconButton>
           <SearchIcon />
         </IconButton>
-        <IconButton>
+        <IconButton onClick={handleNewWindow}>
           <LaunchIcon />
         </IconButton>
-        <IconButton>
+        <IconButton onClick={handleNewTab}>
           <AddBoxIcon />
         </IconButton>
       </Box>
       <Box>
-        <SearchField search={url} handleSearch={searchUrl} />
+        <SearchField handleSearch={searchUrl} />
       </Box>
     </Box>
   );

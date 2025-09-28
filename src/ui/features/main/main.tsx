@@ -3,7 +3,7 @@ import { Box } from "@mui/material";
 import { Header } from "./header";
 
 export const Main = () => {
-  const { url, setUrl } = useMain();
+  const { webViewRef } = useMain();
   return (
     <Box
       sx={{
@@ -13,8 +13,12 @@ export const Main = () => {
         gap: 1,
       }}
     >
-      <Header setUrl={setUrl} />
-      <webview id="webview" src={url} style={{ height: "88vh" }}></webview>
+      <Header webViewRef={webViewRef} />
+      <webview
+        ref={webViewRef}
+        id="webview"
+        style={{ height: "88vh" }}
+      ></webview>
     </Box>
   );
 };
